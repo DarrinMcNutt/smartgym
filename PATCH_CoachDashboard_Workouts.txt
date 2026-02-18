@@ -1,0 +1,43 @@
+// ============================================
+// PATCH: CoachDashboard.tsx - Add Workouts Button
+// ============================================
+
+// Step 1: Add Activity to imports (around line 3)
+// FIND:
+import { Bell, Users, TrendingUp, AlertTriangle, ChevronRight } from 'lucide-react';
+
+// REPLACE WITH:
+import { Bell, Users, TrendingUp, AlertTriangle, ChevronRight, Activity } from 'lucide-react';
+
+
+// Step 2: Update button section (around line 222-230)
+// FIND:
+                                    <button
+                                        onClick={() => onChatAthlete(athlete.id)}
+                                        className="w-full bg-lime-400 text-black font-bold py-2 px-3 rounded-xl hover:bg-lime-300 transition-colors flex items-center justify-center space-x-1"
+                                    >
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                                        </svg>
+                                        <span>Chat</span>
+                                    </button>
+
+// REPLACE WITH:
+                                    <div className="flex space-x-2">
+                                        <button
+                                            onClick={() => onChatAthlete(athlete.id)}
+                                            className="flex-1 bg-lime-400 text-black font-bold py-2 px-3 rounded-xl hover:bg-lime-300 transition-colors flex items-center justify-center space-x-1"
+                                        >
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                                            </svg>
+                                            <span>Chat</span>
+                                        </button>
+                                        <button
+                                            onClick={() => onViewWorkoutHistory && onViewWorkoutHistory()}
+                                            className="flex-1 bg-zinc-800 border border-zinc-700 text-white font-bold py-2 px-3 rounded-xl hover:bg-zinc-700 transition-colors flex items-center justify-center space-x-1"
+                                        >
+                                            <Activity size={16} />
+                                            <span>Plans</span>
+                                        </button>
+                                    </div>

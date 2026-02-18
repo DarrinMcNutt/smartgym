@@ -1,0 +1,8 @@
+// ============================================
+// PATCH 2: workoutPlanService.ts - Export Function
+// ============================================
+// Location: End of file (after line 308)
+// Add this at the very end:
+
+// Export coach-specific functions
+export { getWorkoutPlansForCoach } from './coachWorkoutService';

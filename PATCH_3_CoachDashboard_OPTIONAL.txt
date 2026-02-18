@@ -1,0 +1,62 @@
+// ============================================
+// PATCH 3: CoachDashboard.tsx - Add Workout History Button (OPTIONAL)
+// ============================================
+// Location: In the props interface (around line 7-14)
+// Add this prop:
+
+interface CoachDashboardProps {
+    coachName: string;
+    coachId: string;
+    onViewAthletes?: () => void;
+    onChatAthlete: (athleteId: string) => void;
+    onAssignWorkout: (athleteId: string) => void;
+    onViewWorkoutHistory?: () => void;  // <-- ADD THIS LINE
+    unreadCount?: number;
+}
+
+// Then in the component (around line 16), update the destructuring:
+
+export const CoachDashboard: React.FC<CoachDashboardProps> = ({ 
+    coachName, 
+    coachId, 
+    onChatAthlete, 
+    onAssignWorkout, 
+    onViewWorkoutHistory,  // <-- ADD THIS
+    unreadCount = 0 
+}) => {
+
+// Then add a button somewhere in the JSX (e.g., in the header section):
+
+<button
+  onClick={onViewWorkoutHistory}
+  className="bg-zinc-900 border border-zinc-800 text-white px-4 py-2 rounded-xl font-bold hover:bg-zinc-800 flex items-center space-x-2"
+>
+  <Activity size={18} className="text-lime-400" />
+  <span>Workout History</span>
+</button>
+
+// Finally, in App.tsx where CoachDashboard is called, add:
+
+<CoachDashboard
+  coachName={user.name}
+  coachId={user.id}
+  unreadCount={totalUnreadCount}
+  onChatAthlete={(athleteId) => {
+    setActiveChatRecipientId(athleteId);
+    setCurrentView(AppView.CHAT);
+  }}
+  onAssignWorkout={async (athleteId) => {
+    const { data: athleteData } = await supabase
+      .from('profiles')
+      .select('name')
+      .eq('id', athleteId)
+      .single();
+    
+    setSelectedAthleteForWorkout({
+      id: athleteId,
+      name: athleteData?.name || 'Athlete'
+    });
+    setShowWorkoutCreator(true);
+  }}
+  onViewWorkoutHistory={() => setCurrentView(AppView.WORKOUT_HISTORY)}  // <-- ADD THIS LINE
+/>

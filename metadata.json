@@ -1,0 +1,7 @@
+{
+  "name": "Copy of Gym Smart App",
+  "description": "AI-powered gym management and coaching app featuring meal scanning, workout tracking, and performance analytics.",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}

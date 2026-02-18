@@ -1,0 +1,16 @@
+// ============================================
+// PATCH: App.tsx - Add onViewWorkoutHistory Handler
+// ============================================
+
+// Location: Around line 197-199 in CoachDashboard call
+
+// FIND:
+                setShowWorkoutCreator(true);
+              }}
+            />
+
+// REPLACE WITH:
+                setShowWorkoutCreator(true);
+              }}
+              onViewWorkoutHistory={() => setCurrentView(AppView.WORKOUT_HISTORY)}
+            />

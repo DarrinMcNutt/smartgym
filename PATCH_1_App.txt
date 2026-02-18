@@ -1,0 +1,22 @@
+// ============================================
+// PATCH 1: App.tsx - Add WORKOUT_HISTORY Case
+// ============================================
+// Location: Around line 245-247
+// Find this code:
+
+        case AppView.ALERTS:
+          return <div className="p-6 text-white text-center mt-20">Risk Alerts (Coming Soon)</div>;
+        case AppView.LEADERBOARD:
+
+// Replace with:
+
+        case AppView.ALERTS:
+          return <div className="p-6 text-white text-center mt-20">Risk Alerts (Coming Soon)</div>;
+        case AppView.WORKOUT_HISTORY:
+          return (
+            <CoachWorkoutHistory
+              coachId={user.id}
+              onBack={() => setCurrentView(AppView.DASHBOARD)}
+            />
+          );
+        case AppView.LEADERBOARD:
